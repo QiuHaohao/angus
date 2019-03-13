@@ -2,7 +2,6 @@
 // Learn more from: http://rekit.js.org/docs/routing.html
 
 import {
-  Bubbles,
 } from './';
 
 export default {

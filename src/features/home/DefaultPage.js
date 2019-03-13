@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import reactLogo from '../../images/react-logo.svg';
-import rekitLogo from '../../images/rekit-logo.svg';
 import * as actions from './redux/actions';
+
+import { Bubbles } from '../bubbles';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -14,50 +13,30 @@ export class DefaultPage extends Component {
   };
 
   render() {
+    const mockup_data = [
+      {
+        headline: "us-will-not-ground-boeing-737-max-planes-after-ethiopia-crash", 
+        importance: 133, 
+        thumbnail_url: "https://www.todayonline.com/sites/default/files/styles/new_app_article_detail/public/photos/43_images/20190313_us_plane_reuters.jpg?itok=lB-Fpoj5"
+      },
+      {
+        headline: "sungei-kadut-murder-23-year-old-man-charged-murder",
+        importance: 53, 
+        thumbnail_url: "https://www.todayonline.com/sites/default/files/styles/new_app_article_detail/public/photos/43_images/20190313_murder_raj.jpg?itok=YAoIIUP7"
+      },
+      {
+        headline: "12-years-preventive-detention-recalcitrant-sex-offender-who-assaulted-friends-son",
+        importance: 73, 
+        thumbnail_url: "https://www.todayonline.com/sites/default/files/styles/new_app_article_detail/public/photos/43_images/2017_judgementreuters_22.jpg?itok=o28_LHb_"
+      },
+      {
+        headline: "gojek-drivers-enjoy-20-rebate-when-buying-fuel-esso-stations-islandwide",
+        importance: 30, 
+        thumbnail_url: "https://www.todayonline.com/sites/default/files/styles/new_app_article_detail/public/photos/43_images/20190110_gojek_mf_0.jpeg?itok=hsjVSrrI"}
+    ]
     return (
       <div className="home-default-page">
-        <header className="app-header">
-          <img src={reactLogo} className="app-logo" alt="logo" />
-          <img src={rekitLogo} className="rekit-logo" alt="logo" />
-          <h1 className="app-title">Welcome to React</h1>
-        </header>
-        <div className="app-intro">
-          <h3>To get started:</h3>
-          <ul>
-            <li>
-              Edit component{' '}
-              <a
-                href="http://localhost:6076/element/src%2Ffeatures%2Fhome%2FDefaultPage.js/code"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                src/features/home/DefaultPage.js
-              </a>{' '}
-              for this page.
-            </li>
-            <li>
-              Edit component{' '}
-              <a
-                href="http://localhost:6076/element/src%2Ffeatures%2Fhome%2FApp.js/code"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                src/features/home/App.js
-              </a>{' '}
-              for the root container layout.
-            </li>
-            <li>
-              To see examples, access:&nbsp;
-              <Link to="/examples">/examples</Link>
-            </li>
-            <li>
-              Rekit Studio is running at:&nbsp;
-              <a href="http://localhost:6076/" target="_blank" rel="noopener noreferrer">
-                http://localhost:6076/
-              </a>.
-            </li>
-          </ul>
-        </div>
+        <Bubbles data={mockup_data}/>
       </div>
     );
   }
