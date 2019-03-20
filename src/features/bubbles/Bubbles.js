@@ -8,7 +8,6 @@ import Bubble from './Bubble';
 
 import * as d3 from "d3";
 
-const cls = require('classnames');
 const _ = require('lodash');
 
 export class Bubbles extends Component {
