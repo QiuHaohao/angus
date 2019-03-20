@@ -26,13 +26,7 @@ export default class Bubble extends Component {
     return (
         <circle 
           className={cls("bubbles-bubble", {hover: this.props.hover})}
-          r={this.props.r}
-          cx={this.props.cx}
-          cy={this.props.cy}
-          fill={this.props.fill}
-          onClick={this.props.onClick}
-          onMouseEnter={()=>{this.props.onMouseEnter()}}
-          onMouseLeave={()=>{this.props.onMouseLeave()}}
+          {...this.props}
           />
       )
   }

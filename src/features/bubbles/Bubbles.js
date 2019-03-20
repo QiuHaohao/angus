@@ -36,6 +36,7 @@ export class Bubbles extends Component {
 
     this.state = {
       data: [],
+      inHoverTransition: false,
     };
 
     this.radiusScale = this.radiusScale.bind(this);
@@ -53,12 +54,6 @@ export class Bubbles extends Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   if (this.mounted && this.props.data.length > 0) {
-  //     this.simulatePositions(this.props.data);
-  //   }
-  // }
-
   getRadius(d) {
     if (this.isHovered(d)) {
       return 150;
@@ -74,6 +69,10 @@ export class Bubbles extends Component {
 
   getID(d) {
     return d.headline;
+  }
+
+  getImgID(d) {
+    return "img-" + this.getID(d);
   }
 
   getThumbnailUrl(d) {
@@ -98,6 +97,7 @@ export class Bubbles extends Component {
       this.simulation.nodes(this.state.data);
       this.simulation.restart();
       this.simulation.alpha(0.3);
+      
     }, 20);
   }
 
@@ -106,14 +106,17 @@ export class Bubbles extends Component {
       console.log("enter")
       this.setHover(this.getID(d));
       this.resetSimulationData();
+
     }
   }
 
   getOnMouseLeave(d) {
     return () => {
-      console.log("leave")
-      this.setHover(undefined);
-      this.resetSimulationData();
+      if (!this.state.inHoverTransition) {
+        console.log("leave")
+        this.setHover(undefined);
+        this.resetSimulationData();
+      }
     }
   }
 
@@ -152,24 +155,26 @@ export class Bubbles extends Component {
         <Bubble
           hover={this.isHovered(item)}
           key={this.getID(item)}
+          id={this.getID(item)}
           r={this.getRadius(item)}
           cx={item.x}
           cy={item.y}
-          fill={`url(#${this.getID(item)})`}
+          fill={`url(#${this.getImgID(item)})`}
           onMouseEnter={this.getOnMouseEnter(item)}
           onMouseLeave={this.getOnMouseLeave(item)}
           onClick={()=>{}}
           />
       )
     })
+
     const definitions = (
       <defs>
         {
           _.map(data, (item, index) => {
             return (
               <pattern
-                key={this.getID(item)}
-                id={this.getID(item)}
+                key={this.getImgID(item)}
+                id={this.getImgID(item)}
                 height={1}
                 width={1}
                 patternContentUnits="objectBoundingBox"
@@ -196,7 +201,6 @@ export class Bubbles extends Component {
   }
 
   render() {
-    console.log(this.state.hover)
     if (this.state.data.length) {
       return (
         <div className="bubbles-bubbles">
