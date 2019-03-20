@@ -16,7 +16,7 @@ export class DefaultPage extends Component {
     const mockup_data = [
       {
         headline: "us-will-not-ground-boeing-737-max-planes-after-ethiopia-crash", 
-        importance: 133, 
+        importance: 100, 
         thumbnail_url: "https://www.todayonline.com/sites/default/files/styles/new_app_article_detail/public/photos/43_images/20190313_us_plane_reuters.jpg?itok=lB-Fpoj5"
       },
       {

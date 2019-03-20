@@ -4,8 +4,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
+import Bubble from './Bubble';
+
 import * as d3 from "d3";
 
+const cls = require('classnames');
 const _ = require('lodash');
 
 export class Bubbles extends Component {
@@ -23,7 +26,7 @@ export class Bubbles extends Component {
     useLabels: false,
     width: 1000,
     height: 1000,
-    space: 2,
+    space: 5,
   };
 
   constructor(props) {
@@ -32,7 +35,7 @@ export class Bubbles extends Component {
     this.mounted = false;
 
     this.state = {
-      data: []
+      data: [],
     };
 
     this.radiusScale = this.radiusScale.bind(this);
@@ -45,13 +48,24 @@ export class Bubbles extends Component {
   }
 
   componentDidMount() {
-      if (this.props.data.length > 0) {
-        this.simulatePositions(this.props.data);
-      }
+    if (this.props.data.length > 0) {
+      this.simulatePositions(this.props.data);
     }
+  }
+
+  // componentDidUpdate() {
+  //   if (this.mounted && this.props.data.length > 0) {
+  //     this.simulatePositions(this.props.data);
+  //   }
+  // }
 
   getRadius(d) {
-    return d.importance;
+    if (this.isHovered(d)) {
+      return 150;
+    }
+    else {
+      return d.importance;
+    }
   }
 
   getSize(d) {
@@ -64,6 +78,43 @@ export class Bubbles extends Component {
 
   getThumbnailUrl(d) {
     return d.thumbnail_url;
+  }
+
+  isHovered(d) {
+    const id = this.getID(d);
+    return this.state.hover === id;
+  }
+
+  setHover(headline) {
+    this.setState({
+      ...this.state,
+      // can only hover one item
+      hover: headline
+    })
+  }
+
+  resetSimulationData() {
+    setTimeout(() => {
+      this.simulation.nodes(this.state.data);
+      this.simulation.restart();
+      this.simulation.alpha(0.3);
+    }, 20);
+  }
+
+  getOnMouseEnter(d) {
+    return () => {
+      console.log("enter")
+      this.setHover(this.getID(d));
+      this.resetSimulationData();
+    }
+  }
+
+  getOnMouseLeave(d) {
+    return () => {
+      console.log("leave")
+      this.setHover(undefined);
+      this.resetSimulationData();
+    }
   }
 
   radiusScale = value => {
@@ -87,7 +138,10 @@ export class Bubbles extends Component {
       ))
       .on("tick", () => {
         if (this.mounted) {
-          this.setState({ data });
+          this.setState({ 
+            ...this.state,
+            data 
+          });
         }
       });
   };
@@ -95,13 +149,15 @@ export class Bubbles extends Component {
   renderBubbles = data => {
     const circles = _.map(data, (item, index) => {
       return (
-        <circle 
+        <Bubble
+          hover={this.isHovered(item)}
           key={this.getID(item)}
-          className="simulated-circle"
           r={this.getRadius(item)}
           cx={item.x}
           cy={item.y}
           fill={`url(#${this.getID(item)})`}
+          onMouseEnter={this.getOnMouseEnter(item)}
+          onMouseLeave={this.getOnMouseLeave(item)}
           onClick={()=>{}}
           />
       )
@@ -140,11 +196,14 @@ export class Bubbles extends Component {
   }
 
   render() {
+    console.log(this.state.hover)
     if (this.state.data.length) {
       return (
-        <svg id="bubble-chart" width={this.props.width} height={this.props.height}>
-          {this.renderBubbles(this.state.data)}
-        </svg>
+        <div className="bubbles-bubbles">
+          <svg id="bubble-chart" width={this.props.width} height={this.props.height}>
+            {this.renderBubbles(this.state.data)}
+          </svg>
+        </div>
       );
     }
 
