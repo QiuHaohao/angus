@@ -66,8 +66,12 @@ export class Bubbles extends Component {
     return this.radiusScale(this.getRadius(d))
   }
 
+  getTitle(d) {
+    return d.title;
+  }
+
   getID(d) {
-    return d.headline;
+    return d.id;
   }
 
   getImgID(d) {
@@ -78,16 +82,20 @@ export class Bubbles extends Component {
     return d.thumbnail_url;
   }
 
+  getArticleUrl(d) {
+    return d.article_url;
+  }
+
   isHovered(d) {
     const id = this.getID(d);
     return this.state.hover === id;
   }
 
-  setHover(headline) {
+  setHover(id) {
     this.setState({
       ...this.state,
       // can only hover one item
-      hover: headline
+      hover: id
     })
   }
 
@@ -116,6 +124,12 @@ export class Bubbles extends Component {
         this.setHover(undefined);
         this.resetSimulationData();
       }
+    }
+  }
+
+  getOnClickBubble(d) {
+    return () => {
+      window.open(this.getArticleUrl(d))
     }
   }
 
@@ -155,13 +169,14 @@ export class Bubbles extends Component {
           hover={this.isHovered(item)}
           key={this.getID(item)}
           id={this.getID(item)}
+          title={this.getTitle(item)}
           r={this.getRadius(item)}
           cx={item.x}
           cy={item.y}
           fill={`url(#${this.getImgID(item)})`}
           onMouseEnter={this.getOnMouseEnter(item)}
           onMouseLeave={this.getOnMouseLeave(item)}
-          onClick={()=>{}}
+          onClick={()=>{this.getOnClickBubble(item)}}
           />
       )
     })
@@ -181,7 +196,8 @@ export class Bubbles extends Component {
                 <image
                   height={1}
                   width={1}
-                  preserveAspectRatio={"none"}
+                  style={{objectFit: "cover"}}
+                  preserveAspectRatio={"xMidYMid slice"}
                   xlinkHref={this.getThumbnailUrl(item)}
                   />
               </pattern>

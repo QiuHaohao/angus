@@ -1,6 +1,20 @@
 @import '../../styles/mixins';
 @import '../../styles/global';
 
-.bubbles-bubble {
+.bubbles-bubble, .shadow {
   transition: r @length-animation-hover;
+}
+
+.shadow {
+  opacity: 0;
+  transition: r @length-animation-hover;
+  &.show {
+    opacity: 0.7;
+  }
+}
+
+.title {
+  fill: white;
+  pointer-events: none;
+  transition-delay: visibility @length-animation-hover; 
 }
