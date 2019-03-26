@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actions from './redux/actions';
 
 import Bubble from './Bubble';
 
@@ -12,8 +9,6 @@ const _ = require('lodash');
 
 export class Bubbles extends Component {
   static propTypes = {
-    bubbles: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
     data: PropTypes.array.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
@@ -232,21 +227,4 @@ export class Bubbles extends Component {
   }
 }
 
-/* istanbul ignore next */
-function mapStateToProps(state) {
-  return {
-    bubbles: state.bubbles,
-  };
-}
-
-/* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ ...actions }, dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Bubbles);
+export default Bubbles;
