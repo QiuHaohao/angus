@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Text from 'react-svg-text';
 
+const _ = require('lodash');
 const cls = require('classnames');
+
 
 export default class Bubble extends Component {
   static propTypes = {
@@ -30,13 +32,21 @@ export default class Bubble extends Component {
     return Math.ceil(24 * this.getEstimatedNumLines())
   }
 
+  getTextPositionX() {
+    return this.props.cx - 0.75 * this.props.r
+  }
+
+  getTextPositionY() {
+    return this.props.cy + (this.getEstimatedTextHeight() / 2)
+  }
+
   getText() {
     return this.props.hover
       ? (
         <Text
           className={cls("title", {show: this.props.hover})}
-          x={this.props.cx - 0.8 * this.props.r}
-          y={this.props.cy + (this.getEstimatedTextHeight() / 2)}
+          x={this.getTextPositionX()}
+          y={this.getTextPositionY()}
           width={this.props.r}
           fontSize={24}
           fontFamily='Playfair Display'
@@ -52,12 +62,12 @@ export default class Bubble extends Component {
         <g onClick={this.props.onClick}>
           <circle 
             className={cls("bubbles-bubble", {hover: this.props.hover})}
-            {...this.props}
+            {...(_.omit(this.props, ["hover"]))}
             />
           
           <circle 
             className={cls("shadow", {show: this.props.hover})}
-            {...this.props}
+            {...(_.omit(this.props, ["hover"]))}
             fill={"black"}
             />
           { this.getText() }
