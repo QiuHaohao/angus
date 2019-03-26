@@ -129,6 +129,8 @@ export class Bubbles extends Component {
 
   getOnClickBubble(d) {
     return () => {
+      this.setHover(undefined);
+      this.resetSimulationData();
       window.open(this.getArticleUrl(d))
     }
   }
