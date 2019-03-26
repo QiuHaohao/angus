@@ -48,7 +48,6 @@ export default class Bubble extends Component {
 
 
   render() {
-    console.log(this.props.onClick)
     return (
         <g onClick={this.props.onClick}>
           <circle 

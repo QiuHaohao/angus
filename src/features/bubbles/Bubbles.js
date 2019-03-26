@@ -176,7 +176,7 @@ export class Bubbles extends Component {
           fill={`url(#${this.getImgID(item)})`}
           onMouseEnter={this.getOnMouseEnter(item)}
           onMouseLeave={this.getOnMouseLeave(item)}
-          onClick={()=>{this.getOnClickBubble(item)}}
+          onClick={this.getOnClickBubble(item)}
           />
       )
     })
