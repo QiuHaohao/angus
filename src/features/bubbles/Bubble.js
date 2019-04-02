@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Text from 'react-svg-text';
 
-import TopicTag from './TopicTag';
+import SvgTopicTag from './SvgTopicTag';
 
 const _ = require('lodash');
 const cls = require('classnames');
@@ -75,7 +75,7 @@ export default class Bubble extends Component {
             {...(_.omit(this.props, ["hover"]))}
             fill={"black"}
             />
-          <TopicTag 
+          <SvgTopicTag 
             color={this.props.topicColor}
             topic={this.props.topic}
             x={this.props.cx}

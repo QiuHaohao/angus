@@ -1,0 +1,27 @@
+@import '../../styles/mixins';
+@import '../../styles/global';
+
+.angus {
+    box-shadow: 5px 5px red;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    background: white;
+    z-index: @z-index-angus;
+
+    .angus-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      .angus-image {
+        width: 30%;
+        .img-fluid {
+          width: 120px;
+        }
+      }
+    }
+}
+

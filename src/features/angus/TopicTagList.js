@@ -4,25 +4,28 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
-import AutoSizedBubbles from './AutoSizedBubbles';
+import { getTopicColors } from '../bubbles/redux/selectors'
 
-import { getArrayOfAllArticles, getTopicColors, getHovering } from './redux/selectors';
+import TopicTag from "./TopicTag";
 
+const _ = require('lodash');
 
-export class ConnectedAutoSizedBubbles extends Component {
+export class TopicTagList extends Component {
   static propTypes = {
-    articles: PropTypes.array.isRequired,
-    topicColors: PropTypes.object.isRequired,
+    angus: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
   render() {
     return (
-      <AutoSizedBubbles 
-        data={this.props.articles}
-        topicColors={this.props.topicColors}
-        setHovering={this.props.actions.actionSetHover}
-        hovering={this.props.hovering}/>
+      <div className="angus-topic-tag-list">
+        {
+          _.map(
+            Object.keys(this.props.topicColors),
+            topic => <TopicTag key={topic} topic={topic} color={this.props.topicColors[topic]}/>
+          )
+        }
+      </div>
     );
   }
 }
@@ -30,9 +33,7 @@ export class ConnectedAutoSizedBubbles extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    articles: getArrayOfAllArticles(state),
     topicColors: getTopicColors(state),
-    hovering: getHovering(state)
   };
 }
 
@@ -46,4 +47,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ConnectedAutoSizedBubbles);
+)(TopicTagList);

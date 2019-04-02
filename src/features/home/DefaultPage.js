@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
 import { ConnectedAutoSizedBubbles } from '../bubbles';
+import { ConnectedAngus } from '../angus';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -66,6 +67,7 @@ export class DefaultPage extends Component {
     ]
     return (
       <div className="home-default-page">
+        <ConnectedAngus />
         <ConnectedAutoSizedBubbles />
       </div>
     );

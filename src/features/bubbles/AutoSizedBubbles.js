@@ -10,6 +10,8 @@ export default class AutoSizedBubbles extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
     topicColors: PropTypes.object.isRequired,
+    setHovering: PropTypes.func.isRequired,
+    hovering: PropTypes.string.isRequired,
     space: PropTypes.number,
   };
 

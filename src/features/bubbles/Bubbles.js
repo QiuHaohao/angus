@@ -11,6 +11,8 @@ export class Bubbles extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
     topicColors: PropTypes.object.isRequired,
+    setHovering: PropTypes.func.isRequired,
+    hovering: PropTypes.string.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
     space: PropTypes.number,
@@ -92,15 +94,11 @@ export class Bubbles extends Component {
 
   isHovered(d) {
     const id = this.getID(d);
-    return this.state.hover === id;
+    return this.props.hovering === id;
   }
 
   setHover(id) {
-    this.setState({
-      ...this.state,
-      // can only hover one item
-      hover: id
-    })
+    this.props.setHovering(id)
   }
 
   resetSimulationData() {

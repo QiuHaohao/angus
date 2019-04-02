@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { getTextWidth } from "../../utils"
 
-export default class TopicTag extends Component {
+export default class SvgTopicTag extends Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
     topic: PropTypes.string.isRequired,
@@ -38,7 +38,7 @@ export default class TopicTag extends Component {
 
   render() {
     return (
-      <g className="bubbles-topic-tag" transform={`translate(${this.XPosition},${this.YPosition})`}>
+      <g className="bubbles-svg-topic-tag" transform={`translate(${this.XPosition},${this.YPosition})`}>
         <rect id="r" width="16" height="16" rx="2" ry="2" style={{fill:this.props.color}}/>
         <text x="20" y="13" fontSize={this.fontSize} fontFamily={this.font}>{ this.props.topic }</text>
       </g>
