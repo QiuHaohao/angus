@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Text from 'react-svg-text';
 
+import TopicTag from './TopicTag';
+
 const _ = require('lodash');
 const cls = require('classnames');
 
@@ -13,6 +15,9 @@ export default class Bubble extends Component {
     cy: PropTypes.number.isRequired,
     fill: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    topic: PropTypes.string.isRequired,
+    topicColor: PropTypes.string.isRequired,
+
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,    
     onClick: PropTypes.func,
@@ -70,6 +75,12 @@ export default class Bubble extends Component {
             {...(_.omit(this.props, ["hover"]))}
             fill={"black"}
             />
+          <TopicTag 
+            color={this.props.topicColor}
+            topic={this.props.topic}
+            x={this.props.cx}
+            y={this.props.cy}
+            r={this.props.r}/>
           { this.getText() }
         </g>
       )

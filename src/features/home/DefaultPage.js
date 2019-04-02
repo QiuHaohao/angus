@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 
-import { Bubbles } from '../bubbles';
+import { ConnectedAutoSizedBubbles } from '../bubbles';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -66,7 +66,7 @@ export class DefaultPage extends Component {
     ]
     return (
       <div className="home-default-page">
-        <Bubbles data={mockup_data}/>
+        <ConnectedAutoSizedBubbles />
       </div>
     );
   }

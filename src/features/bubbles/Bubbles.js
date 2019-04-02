@@ -10,6 +10,7 @@ const _ = require('lodash');
 export class Bubbles extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
+    topicColors: PropTypes.object.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
     space: PropTypes.number,
@@ -20,7 +21,7 @@ export class Bubbles extends Component {
     useLabels: false,
     width: 1000,
     height: 1000,
-    space: 5,
+    space: 25,
   };
 
   constructor(props) {
@@ -79,6 +80,14 @@ export class Bubbles extends Component {
 
   getArticleUrl(d) {
     return d.article_url;
+  }
+
+  getTopic(d) {
+    return d.topic;
+  }
+
+  getTopicColor(d) {
+    return this.props.topicColors[this.getTopic(d)];
   }
 
   isHovered(d) {
@@ -174,6 +183,8 @@ export class Bubbles extends Component {
           onMouseEnter={this.getOnMouseEnter(item)}
           onMouseLeave={this.getOnMouseLeave(item)}
           onClick={this.getOnClickBubble(item)}
+          topic={this.getTopic(item)}
+          topicColor={this.getTopicColor(item)}
           />
       )
     })

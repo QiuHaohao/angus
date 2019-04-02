@@ -1,7 +1,30 @@
 @import '../../styles/mixins';
 
+html {
+  width: 100%;
+  height: 100%;
+  body {
+    width: 100%;
+    height: 100%;
+    #root {
+      width: 100%;
+      height: 100%;
+      .home-app {
+        width: 100%;
+        height: 100%;
+        .page-container {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
 .home-default-page {
   text-align: center;
+  width: 100%;
+  height: 100%;
   .app {
     text-align: center;
   }
