@@ -11,13 +11,43 @@ export default class Angus extends Component {
     hoveredArticle: PropTypes.object
   };
 
+  state = {
+    thinking: false,
+  }
+
+  componentDidUpdate(prevProps) {
+    // enter hover
+    if (prevProps.hoveredArticle === undefined
+        && this.props.hoveredArticle) {
+          this.setThinking(true)
+          setTimeout(() => {
+            this.setThinking(false)
+        }, 500)
+    }
+    if (this.props.hoveredArticle === undefined
+        && prevProps.hoveredArticle) {
+          this.setThinking(false)
+    }
+  }
+
+  setThinking(thinking) {
+    this.setState({
+      ...this.state,
+      thinking
+    })
+  }
+
   renderContent = () => {
-    if (!this.props.hoveredArticle){
+    if (!this.props.hoveredArticle || this.state.thinking){
      return <TopicTagList />
     } else {
-      return <p>
-          {this.props.hoveredArticle.angus_bot_message}
-         </p>
+      return (
+        <div>
+          <p className="bot-message">
+            {this.props.hoveredArticle.angus_bot_message}
+          </p>
+        </div>
+      )
     }
   }
   

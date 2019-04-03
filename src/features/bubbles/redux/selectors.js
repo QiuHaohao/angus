@@ -10,6 +10,10 @@ export function getTopicColors(state) {
   return state.bubbles.topicColors
 }
 
+export function getTopicColor(state, topic) {
+  return getTopicColors(state)[topic]
+}
+
 export function getHovering(state) {
   return state.bubbles.hovering
 }

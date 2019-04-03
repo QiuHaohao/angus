@@ -12,7 +12,7 @@ const _ = require('lodash');
 
 export class TopicTagList extends Component {
   static propTypes = {
-    angus: PropTypes.object.isRequired,
+    topicColors: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
 

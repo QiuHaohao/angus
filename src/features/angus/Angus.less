@@ -7,19 +7,26 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 400px;
+    width: 500px;
     background: white;
     z-index: @z-index-angus;
-
     .angus-card {
       position: relative;
       display: flex;
       align-items: center;
       flex-direction: row;
+      transition: height @length-animation-hover;
       .angus-image {
         width: 30%;
         .img-fluid {
           width: 120px;
+        }
+      }
+      .angus-content {
+        padding: 10px;
+        .bot-message {
+          text-align: left;
+          line-height: 20px;
         }
       }
     }
