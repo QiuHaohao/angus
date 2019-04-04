@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import angusRead from "./angusRead.png";
-import angusCoffee from "./angusCoffee.png";
+import angusBubbleTea from "./angusBubbleTea.png";
+import angusWorking from "./angusWorking.png";
 
 import TopicTagList from "./TopicTagList";
 
@@ -12,33 +13,33 @@ export default class Angus extends Component {
   };
 
   state = {
-    thinking: false,
+    working: false,
   }
 
   componentDidUpdate(prevProps) {
     // enter hover
     if (prevProps.hoveredArticle === undefined
         && this.props.hoveredArticle) {
-          this.setThinking(true)
+          this.setWorking(true)
           setTimeout(() => {
-            this.setThinking(false)
+            this.setWorking(false)
         }, 500)
     }
     if (this.props.hoveredArticle === undefined
         && prevProps.hoveredArticle) {
-          this.setThinking(false)
+          this.setWorking(false)
     }
   }
 
-  setThinking(thinking) {
+  setWorking(working) {
     this.setState({
       ...this.state,
-      thinking
+      working
     })
   }
 
   renderContent = () => {
-    if (!this.props.hoveredArticle || this.state.thinking){
+    if (!this.props.hoveredArticle || this.state.working){
      return <TopicTagList />
     } else {
       return (
@@ -52,9 +53,11 @@ export default class Angus extends Component {
   }
   
   renderImage = () => {
-    if(!this.props.hoveredArticle){
-      return <img className="img-fluid" src={angusCoffee} alt="Angus drinks coffee"/>
-    }else {
+    if(this.state.working){
+      return <img className="img-fluid" src={angusWorking} alt="Angus works"/>
+    } else if(!this.props.hoveredArticle){
+      return <img className="img-fluid" src={angusBubbleTea} alt="Angus drinks bubble tea"/>
+    } else {
       return <img className="img-fluid" src={angusRead} alt="Angus reads newspaper"/>
     }
   }

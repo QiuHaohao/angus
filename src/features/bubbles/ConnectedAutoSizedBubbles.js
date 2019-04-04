@@ -14,6 +14,7 @@ export class ConnectedAutoSizedBubbles extends Component {
     articles: PropTypes.array.isRequired,
     topicColors: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    moveToArchive: PropTypes.func.isRequired,
   };
 
   render() {
@@ -22,6 +23,7 @@ export class ConnectedAutoSizedBubbles extends Component {
         data={this.props.articles}
         topicColors={this.props.topicColors}
         setHovering={this.props.actions.actionSetHover}
+        moveToArchive={this.props.actions.actionMoveArticleToArchive}
         hovering={this.props.hovering}/>
     );
   }

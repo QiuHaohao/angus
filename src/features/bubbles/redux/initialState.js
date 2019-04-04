@@ -158,6 +158,7 @@ const initialState = {
   topicColors,
   articles,
   articleIds,
+  archivedArticleIds: [],
   hovering: undefined,
 };
 

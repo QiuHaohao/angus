@@ -8,9 +8,13 @@
 
 import initialState from './initialState';
 import { reducer as actionSetHoverReducer } from './actionSetHover';
+import { reducer as actionMoveArticleToArchiveReducer } from './actionMoveArticleToArchive';
+import { reducer as actionToggleDrawerReducer } from './actionToggleDrawer';
 
 const reducers = [
   actionSetHoverReducer,
+  actionMoveArticleToArchiveReducer,
+  actionToggleDrawerReducer,
 ];
 
 export default function reducer(state = initialState, action) {

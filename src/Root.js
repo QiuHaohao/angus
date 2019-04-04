@@ -7,6 +7,8 @@ import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import history from './common/history';
 
+import 'antd/dist/antd.css';
+
 function renderRouteConfigV3(routes, contextPath) {
   // Resolve route config object in React Router v3.
   const children = []; // children component list

@@ -75,12 +75,18 @@ export default class Bubble extends Component {
             {...(_.omit(this.props, ["hover"]))}
             fill={"black"}
             />
-          <SvgTopicTag 
-            color={this.props.topicColor}
-            topic={this.props.topic}
-            x={this.props.cx}
-            y={this.props.cy}
-            r={this.props.r}/>
+          {
+            this.props.r !== 0 
+              ? <SvgTopicTag 
+                  color={this.props.topicColor}
+                  topic={this.props.topic}
+                  x={this.props.cx}
+                  y={this.props.cy}
+                  r={this.props.r}
+                  />
+              : null
+          }
+          
           { this.getText() }
         </g>
       )

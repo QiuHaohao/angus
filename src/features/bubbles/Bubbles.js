@@ -13,6 +13,7 @@ export class Bubbles extends Component {
     topicColors: PropTypes.object.isRequired,
     setHovering: PropTypes.func.isRequired,
     hovering: PropTypes.string.isRequired,
+    moveToArchive: PropTypes.func.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
     space: PropTypes.number,
@@ -46,6 +47,10 @@ export class Bubbles extends Component {
   }
 
   componentDidMount() {
+    this.startSimulation()
+  }
+
+  startSimulation() {
     if (this.props.data.length > 0) {
       this.simulatePositions(this.props.data);
     }
@@ -106,7 +111,6 @@ export class Bubbles extends Component {
       this.simulation.nodes(this.state.data);
       this.simulation.restart();
       this.simulation.alpha(0.3);
-      
     }, 20);
   }
 
@@ -115,7 +119,6 @@ export class Bubbles extends Component {
       console.log("enter")
       this.setHover(this.getID(d));
       this.resetSimulationData();
-
     }
   }
 
@@ -134,6 +137,8 @@ export class Bubbles extends Component {
       this.setHover(undefined);
       this.resetSimulationData();
       window.open(this.getArticleUrl(d))
+      d.importance = 0
+      this.props.moveToArchive(this.getID(d))
     }
   }
 
