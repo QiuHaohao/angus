@@ -156,8 +156,8 @@ export class Bubbles extends Component {
       .forceSimulation()
       .nodes(data)
     this.simulation.velocityDecay(0.5)
-      .force("x", d3.forceX(0).strength(0.05))
-      .force("y", d3.forceY(0).strength(0.05))
+      .force("x", d3.forceX(0).strength(0.03))
+      .force("y", d3.forceY(0).strength(0.03))
       .force("collide", d3.forceCollide(
         d => this.getRadius(d) + this.props.space
       ))
