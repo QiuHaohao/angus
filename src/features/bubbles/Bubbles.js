@@ -61,7 +61,7 @@ export class Bubbles extends Component {
       return 150;
     }
     else {
-      return d.importance;
+      return d.importance * 1.2;
     }
   }
 
@@ -157,7 +157,7 @@ export class Bubbles extends Component {
       .nodes(data)
     this.simulation.velocityDecay(0.5)
       .force("x", d3.forceX(0).strength(0.03))
-      .force("y", d3.forceY(0).strength(0.03))
+      .force("y", d3.forceY(0).strength(0.12))
       .force("collide", d3.forceCollide(
         d => this.getRadius(d) + this.props.space
       ))
