@@ -40,7 +40,7 @@ export default class Angus extends Component {
 
   renderContent = () => {
     if (!this.props.hoveredArticle || this.state.working){
-     return <TopicTagList />
+     return <div className="welcome">Welcome to your News Cloud</div>
     } else {
       return (
         <div>

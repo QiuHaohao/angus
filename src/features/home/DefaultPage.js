@@ -24,7 +24,9 @@ export class DefaultPage extends Component {
   render() {
     return (
       <div className="home-default-page">
-        <div className="home-default-page-header">Discover a NEW TODAY</div>
+        <div className="home-default-page-header">
+          <div className="home-default-page-header-today">TODAY</div>
+        </div>
         <ConnectedAngus />
         <ConnectedAutoSizedBubbles />
         <Button className="drawer-button" onClick={this.props.actions.actionToggleDrawer} type="primary" shape="circle" icon="database"/>
