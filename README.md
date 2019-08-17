@@ -32,7 +32,7 @@ Angus is made by a team of journalists, designers and developers:
   
 We'd like to express our gratitute to
 - Ms Jessica Tan and Ms Joan Kelly for their support and guidance, and for making News Media Lab possible,
-- Mr Harish Pillay for his kind guidance and advice,
-- Mr Jason Tan and Ms Tan Mae Lynn for their guidance and feedback.
+- Mr Harish Pillay from Red Hat for his kind guidance and advice,
+- Mr Jason Tan and Ms Tan Mae Lynn from TODAY Online for their guidance and feedback.
 
 
