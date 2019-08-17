@@ -30,4 +30,9 @@ Angus is made by a team of journalists, designers and developers:
   - Chee Jia Hian
   - Qiu Haoze
   
-We'd like to thank 
+We'd like to express our gratitute to
+- Ms Jessica Tan and Ms Joan Kelly for their support and guidance, and for making News Media Lab possible,
+- Mr Harish Pillay for his kind guidance and advice,
+- Mr Jason Tan and Ms Tan Mae Lynn for their guidance and feedback.
+
+
